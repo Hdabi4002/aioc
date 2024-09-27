@@ -1,0 +1,150 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+document.addEventListener('contextmenu', function(event) 
+{
+           
+ event.preventDefault();
+       
+ });
+   
+</script>
+    <title>Complex Numbers</title>
+    <style>
+        body{
+            background-image:url("bkg.jpg");
+        }
+       h1{
+            padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+ font-size:40px;
+        }
+        button{
+            padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            justify-self: center;
+            width: calc(50%-20px); /* Full width minus padding and border */
+            font-family:serif;
+            font-size:20px;
+        }
+input{
+  padding: 15px;
+            margin-top: 10px;
+            margin: 20px;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            justify-self: center;
+            width: calc(50%-10px); /* Full width minus padding and border */
+            font-family:serif;
+            font-size:20px;
+}
+       .result{
+               padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:30px;
+       }
+       b{
+            margin-top: 10px;
+            margin-left: 2%;
+            font-family:serif;
+            font-size:70px;
+        }
+label{
+margin-left:1.5%;
+font-size:23px;
+}
+    </style>
+</head>
+<body>
+ <div class="container">
+<b>i</b>
+        <div class="container">
+
+        <h1>Complex Number Calculator</h1>
+
+        <div class="input-section">
+
+<label>Enter first complex number: </label>
+            <input type="text" id="complex1" placeholder="(a ± bi)">
+
+<br/>
+<label>Enter second complex number: </label>
+            <input type="text" id="complex2" placeholder="(c ± di) ">
+
+        </div>
+        
+<div class="button-section">
+ 
+           <button onclick="performOperation('+')">Add</button>
+ 
+           <button onclick="performOperation('-')">Subtract</button>
+         
+ </div>
+        
+<div class="result" id="result"></div>
+    </div>
+    <script>
+ function parseComplex(complexStr) {
+    const regex = /^([-+]?\d*\.?\d*)\s*([-+]\s*\d*\.?\d*)i$/;
+    const match = complexStr.replace(/\s+/g, '').match(regex);
+    if (!match) {
+        throw new Error("Invalid complex number format.");
+    }
+    const real = parseFloat(match[1]) || 0;
+    const imaginary = parseFloat(match[2].replace(' ', '')) || 0;
+    return { real, imaginary };
+}
+
+function formatComplex(num) {
+    return `${num.real} ${num.imaginary >= 0 ? '+' : '-'} ${Math.abs(num.imaginary)}i`;
+}
+
+function performOperation(operation) {
+    const complex1Str = document.getElementById('complex1').value;
+    const complex2Str = document.getElementById('complex2').value;
+
+    try {
+        const complex1 = parseComplex(complex1Str);
+        const complex2 = parseComplex(complex2Str);
+        let result;
+
+        switch (operation) {
+            case '+':
+                result = {
+                    real: complex1.real + complex2.real,
+                    imaginary: complex1.imaginary + complex2.imaginary
+                };
+                break;
+            case '-':
+                result = {
+                    real: complex1.real - complex2.real,
+                    imaginary: complex1.imaginary - complex2.imaginary
+                };
+                break;
+        }
+        document.getElementById('result').innerText = `Result: ${formatComplex(result)}`;
+    } catch (error) {
+        document.getElementById('result').innerText = error.message;
+    }
+}
+
+    </script>
+<footer>
+<i>HELP:You can easily calculate addition or subtraction of complex numbers just by filling the two input boxes with a ± bi and c ± di, where, a,b,c,d are real numbers and 'i' is an imaginary number called "iota" and then click on "Add" or "Subtract" button respectively and get the result below.</i>
+</footer>
+</body>
+</html>

@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scales=1.0">
+<script>
+document.addEventListener('contextmenu', function(event) 
+{
+           
+ event.preventDefault();
+       
+ });
+   
+</script>
+    <title>Matrix</title>
+    <style>
+        body{
+            background-image:url("bkg.jpg");
+        }
+       h1{
+            padding: 8px;
+            margin-top: 10px;
+            margin: 17px;
+            font-size: 40px;
+        }
+h2{
+ margin-left: 1%;
+}
+        input{
+            padding: 10px;
+            margin-top: 10px;
+            margin-left: 15%;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            justify-self: center;
+            width: calc(50%-20px); /* Full width minus padding and border */
+            font-family:serif;
+            font-size:20px;
+        }
+       button{
+            padding: 5px;
+            margin-top: 10px;
+            margin-left: 2.5%;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            justify-self: center;
+            width: 90px;
+            font-family:serif;
+            font-size:20px;
+        }
+       .result{
+               padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:30px;
+       }
+       b{
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:80px;
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+<b>[ ]</b>
+        <h1>MATRIX CALCULATION:</h1>    
+<h2>Enter Matrix A</h2>
+        
+<input type="number" id="a11" placeholder="A11">
+        
+<input type="number" id="a12" placeholder="A12">
+        <br/>
+        
+<input type="number" id="a21" placeholder="A21">
+        
+<input type="number" id="a22" placeholder="A22">
+        
+<h2>Enter Matrix B</h2>
+        
+<input type="number" id="b11" placeholder="B11">
+       
+ <input type="number" id="b12" placeholder="B12">
+        <br/>
+        
+<input type="number" id="b21" placeholder="B21">
+        
+<input type="number" id="b22" placeholder="B22">
+        <br/>
+        
+<button onclick="addMatrices()">Add</button>
+     <br/>  
+ <button onclick="subtractMatrices()">Subtract</button>
+   <br/>     
+<button onclick="multiplyMatrices()">Multiply</button>
+    <br/>          
+   <div class="result" id="result"></div>
+
+    <script>
+    function getMatrixA() {
+    return [
+        [parseFloat(document.getElementById('a11').value), parseFloat(document.getElementById('a12').value)],
+        [parseFloat(document.getElementById('a21').value), parseFloat(document.getElementById('a22').value)]
+    ];
+}
+
+function getMatrixB() {
+    return [
+        [parseFloat(document.getElementById('b11').value), parseFloat(document.getElementById('b12').value)],
+        [parseFloat(document.getElementById('b21').value), parseFloat(document.getElementById('b22').value)]
+    ];
+}
+
+function addMatrices() {
+    const A = getMatrixA();
+    const B = getMatrixB();
+    const result = [
+        [A[0][0] + B[0][0], A[0][1] + B[0][1]],
+        [A[1][0] + B[1][0], A[1][1] + B[1][1]]
+    ];
+    displayResult(result);
+}
+
+function subtractMatrices() {
+    const A = getMatrixA();
+    const B = getMatrixB();
+    const result = [
+        [A[0][0] - B[0][0], A[0][1] - B[0][1]],
+        [A[1][0] - B[1][0], A[1][1] - B[1][1]]
+    ];
+    displayResult(result);
+}
+
+function multiplyMatrices() {
+    const A = getMatrixA();
+    const B = getMatrixB();
+    const result = [
+        [A[0][0] * B[0][0] + A[0][1] * B[1][0], A[0][0] * B[0][1] + A[0][1] * B[1][1]],
+        [A[1][0] * B[0][0] + A[1][1] * B[1][0], A[1][0] * B[0][1] + A[1][1] * B[1][1]]
+    ];
+    displayResult(result);
+}
+
+function displayResult(result) {
+    const resultDiv = document.getElementById('result');
+    if (Array.isArray(result)) {
+        resultDiv.innerHTML = `Result: <br>[${result[0][0]}, ${result[0][1]}]<br>[${result[1][0]}, ${result[1][1]}]`;
+    } else {
+        resultDiv.innerHTML = result;
+    }
+}
+
+    </script>
+<footer>
+<i>HELP:You can easily calculate addition, subtraction or multipliation of matrices by filling the input boxes with elements of matrices(A and B) and then click on "Add", "Subtract" or "Multiply" button respectively to get the result below .</i>
+</footer>
+</body>
+</html>

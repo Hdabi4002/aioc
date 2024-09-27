@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+document.addEventListener('contextmenu', function(event) 
+{
+           
+ event.preventDefault();
+       
+ });
+   
+</script>
+    <title>Trigonometry</title>
+    <style>
+        body{
+            background-image:url("bkg.jpg");
+        }
+       h1{
+            padding: 8px;
+            margin-top: 10px;
+            margin: 17px;
+            font-size: 40px;
+        }
+h2{
+margin-left:10px;
+}
+        input,button{
+            padding: 10px;
+            margin-top: 10px;
+            margin-left: 20%;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            justify-self: center;
+            width: 140px;
+            font-family:serif;
+            font-size:20px;
+        }
+select,option{
+            padding: 2px;
+            margin-top: 5px;
+            margin: 10px;
+            color: black;
+            background-color: white;
+            border: 1px solid black;
+            cursor: pointer;
+            justify-self: center;
+            width: calc(50%-2px); /* Full width minus padding and border */
+            font-family:serif;
+            font-size:15px;
+
+}
+       .result{
+               padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:30px;
+       }
+       b{
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:80px;
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+<b>∠</b>
+        <h1>TRIGONOMETRIC CALCULATOR:</h1>  
+    <!-- Angle Conversion -->
+    <div>
+        <h2>Angle Conversion</h2>
+        <input type="number" id="angleValue" placeholder="Enter angle" step="any">
+        <select id="angleFrom">
+            <option value="degrees">Degrees</option>
+            <option value="radians">Radians</option>
+        </select>
+        <select id="angleTo">
+            <option value="degrees">Degrees</option>
+            <option value="radians">Radians</option>
+        </select> <br/>
+        <button onclick="convertAngle()">Convert Angle</button>
+    </div>
+    <div class="result" id="result1"></div>
+    <!-- Trigonometric Functions -->
+    <div>
+        <h2>Trigonometric Functions</h2>
+        <input type="number" id="trigAngle" placeholder="Enter angle" step="any">
+        <select id="trigUnit">
+            <option value="degrees">Degrees</option>
+            <option value="radians">Radians</option>
+        </select><br/>
+        <button onclick="calculateTrigFunctions()">Calculate Trig Functions</button>
+    </div>
+   <div class="result" id="result2"></div>
+
+     <script>
+        function convertAngle() {
+            const value = parseFloat(document.getElementById('angleValue').value);
+            const from = document.getElementById('angleFrom').value;
+            const to = document.getElementById('angleTo').value;
+
+            if (isNaN(value)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            let result1;
+            if (from === to) {
+                result1 = value;
+            } else if (from === 'degrees' && to === 'radians') {
+                result1 = value * Math.PI / 180;
+            } else if (from === 'radians' && to === 'degrees') {
+                result1 = value * 180 / Math.PI;
+            }
+
+            document.getElementById('result1').innerText = `Converted Angle: ${result1.toFixed(4)} ${to}`;
+        }
+
+        function calculateTrigFunctions() {
+            const angle = parseFloat(document.getElementById('trigAngle').value);
+            const unit = document.getElementById('trigUnit').value;
+
+            if (isNaN(angle)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            // Convert angle to radians if necessary
+            const angleInRadians = unit === 'degrees' ? angle * Math.PI / 180 : angle;
+
+            const sine = Math.sin(angleInRadians);
+            const cosine = Math.cos(angleInRadians);
+            const tangent = Math.tan(angleInRadians);
+
+            document.getElementById('result2').innerText = `
+                Sine: ${sine.toFixed(4)}\n
+                Cosine: ${cosine.toFixed(4)}\n
+                Tangent: ${tangent.toFixed(4)}
+            `;
+        }
+    </script>
+<footer>
+<i>HELP:Enter the angles in the input boxes and select degree or radian and click on "Convert Angle" button to convert degree to radian and vise-versa , or "Calculate Trig Functions" button to get sine, cosine and tangent values , respectively to get the result below .</i>
+</footer>
+</body>
+</html>

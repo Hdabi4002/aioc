@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+document.addEventListener('contextmenu', function(event) 
+{
+           
+ event.preventDefault();
+       
+ });
+   
+</script>
+    <title>Modulus</title>
+    <style>
+        body{
+            background-image:url("bkg.jpg");
+        }
+       h1{
+            padding: 8px;
+            margin-top: 10px;
+            margin: 17px;
+            font-size: 40px;
+        }
+        input,button{
+            padding: 10px;
+            margin-top: 10px;
+            margin: 30px;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            justify-self: center;
+            width: calc(50%-20px); /* Full width minus padding and border */
+            font-family:serif;
+            font-size:20px;
+        }
+       .result{
+               padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:30px;
+       }
+       b{
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:80px;
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+<b>| |</b>
+        <h1>CALCULATE MODULUS:</h1>    
+<input type="number" id="number1" placeholder="Enter first number" />
+    <br/>   
+ <input type="number" id="number2" placeholder="Enter second number" />
+   <br/>     
+<button onclick="calculateModulus()">Calculate Modulus</button>
+        
+ </div>
+   <div class="result" id="result"></div>
+
+    <script>
+     function calculateModulus() {
+    const num1 = parseInt(document.getElementById('number1').value);
+    const num2 = parseInt(document.getElementById('number2').value);
+
+    if (!isNaN(num1) && !isNaN(num2) && num2 !== 0) {
+        const result = num1 % num2;
+        document.getElementById('result').textContent = `Result: ${result}`;
+    } else {
+        document.getElementById('result').textContent = 'Please enter valid numbers and ensure the second number is not zero.';
+    }
+}
+
+    </script>
+<footer>
+<i>HELP:You can easily calculate modulus by filling first input box with dividend number and second input box with divisor number and then click on "Calculate Modulus" button to get the result(remainder) below .</i>
+</footer>
+</body>
+</html>

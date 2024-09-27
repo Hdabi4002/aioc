@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+document.addEventListener('contextmenu', function(event) 
+{
+           
+ event.preventDefault();
+       
+ });
+   
+</script>
+    <title>Bitwise Operations</title>
+    <style>
+        body{
+            background-image:url("bkg.jpg");
+        }
+       h1{
+              padding: 8px;
+            margin-top: 10px;
+            margin: 17px;
+            font-size:40px;
+        }
+        input,button{
+            padding: 10px;
+            margin-top: 10px;
+             margin: 2%;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            justify-self: center;
+            width: calc(50%-20px); /* Full width minus padding and border */
+            font-family:serif;
+            font-size:20px;
+        }
+       .result{
+               padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:30px;
+       }
+       b{
+            margin-top: 10px;
+            margin: 30px;
+            font-family:serif;
+            font-size:40px;
+        }
+   label{
+                 font-size:25px;
+                 margin-left:2%;
+}
+    </style>
+</head>
+<body>
+ <div class="container">
+<b>AND, OR, XOR, NOT</b>
+        <h1>BITWISE OPERATIONS:</h1>
+       <label for="inputA">Input A (integer): </label>
+
+            <input type="number" id="inputA" placeholder="Enter an integer">
+     <br/>       
+ <label for="inputB">Input B (integer): </label>
+    
+        <input type="number" id="inputB" placeholder="Enter an integer">
+   <br/>
+     <button onclick="performOperations()">Calculate</button>
+    <br/>
+    </div>
+   <div class="result" id="result"></div>
+
+    <script>
+      function performOperations() {
+    const inputA = parseInt(document.getElementById('inputA').value);
+    const inputB = parseInt(document.getElementById('inputB').value);
+    const results = document.getElementById('result');
+
+    const andResult = inputA & inputB;
+    const orResult = inputA | inputB;
+    const xorResult = inputA ^ inputB;
+    const notA = ~inputA;
+    const notB = ~inputB;
+
+    result.innerHTML = `
+        <h3>Results:</h3>
+        <p>A AND B: ${andResult}</p>
+        <p>A OR B: ${orResult}</p>
+        <p>A XOR B: ${xorResult}</p>
+        <p>NOT A: ${notA}</p>
+        <p>NOT B: ${notB}</p>
+    `;
+}
+
+
+    </script>
+<footer>
+<i>HELP:You can now enter integers for Input A and Input B, click the "Calculate" button, and see the results of the bitwise operations below .</i>
+</footer>
+</body>
+</html>

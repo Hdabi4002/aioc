@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <script>
+document.addEventListener('contextmenu', function(event) 
+{
+           
+ event.preventDefault();
+       
+ });
+   
+</script>
+    <title>Addition</title>
+    <style>
+        body{
+            background-image:url("bkg.jpg");
+        }
+       h1{
+            padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+        }
+        input,button{
+            padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            justify-self: center;
+            width: calc(50%-20px); /* Full width minus padding and border */
+            font-family:serif;
+            font-size:20px;
+        }
+       .result{
+               padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:30px;
+       }
+       b{
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:80px;
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+<b>+</b>
+        <h1>CALCULATE ADDITION OF INFINITE NUMBERS:</h1>
+        <form id="calculator">
+            <div id="inputs">
+                <!-- Initial input field -->
+                <input type="number" class="num-input" placeholder="Enter number">
+            </div>
+            <button type="button" onclick="addInput()">Add another number</button><br/>
+            <button type="button" onclick="calculateSum()">Calculate Sum</button>
+            <div class="result" id="result"></div>
+        </form>
+    </div>
+ <script>
+        function addInput() {
+            // Create a new input field
+            const newInput = document.createElement('input');
+            newInput.type = 'number';
+            newInput.className = 'num-input';
+            newInput.placeholder = 'Enter number';
+
+            // Append the new input field to the inputs container
+            document.getElementById('inputs').appendChild(newInput);
+        }
+
+        function calculateSum() {
+            // Get all input elements
+            const inputs = document.querySelectorAll('.num-input');
+            let sum = 0;
+
+            // Loop through each input and add its value to the sum
+            inputs.forEach(input => {
+                const value = parseFloat(input.value) || 0; // Default to 0 if value is not a number
+                sum += value;
+            });
+
+            // Display the result
+            document.getElementById('result').innerText = 'The sum is: ' + sum;
+        }
+    </script>
+<footer>
+<i>HELP:You can easily add infinite numbers by clicking on "Add another number" button as many time as you want the count of numbers to add, fill the input boxes with the numbers and click on  "Calculate Sum" button to get the result below.</i>
+</footer>
+</body>
+</html>

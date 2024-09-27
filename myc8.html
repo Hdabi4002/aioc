@@ -1,0 +1,268 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+document.addEventListener('contextmenu', function(event) 
+{
+           
+ event.preventDefault();
+       
+ });
+   
+</script>
+    <title>Unit Conversion</title>
+    <style>
+        body{
+            background-image:url("bkg.jpg");
+        }
+       h1{
+            padding: 5px;
+            margin-top: 10px;
+            margin: 20px;
+            font-size: 40px;
+        }
+       input,button{
+            padding: 10px;
+            margin-top: 7px;
+            margin-left: 15%;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            justify-self: center;
+            font-family:serif;
+            font-size:20px;
+        }
+input{
+ width: 130px;
+}
+button{
+ width: 155px;
+}
+select,option{
+  padding: 2px;
+            margin-top: 5px;
+            margin: 10px;
+            color: black;
+            background-color: white;
+            border: 1px solid black;
+            cursor: pointer;
+            justify-self: center;
+            width: 95px;
+            font-family:serif;
+            font-size:15px;
+
+}
+       .result{
+               padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:30px;
+       }
+       b{
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:80px;
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+<b>⇔</b>
+        <h1>UNIT CONVERSION CALCULATOR:</h1>
+    <!-- Length Conversion -->
+    <div>
+        <h2>Length Conversion</h2>
+        <input type="number" id="lengthValue" placeholder="Enter value" step="any">
+        <select id="lengthFrom">
+            <option value="meters">Meters</option>
+            <option value="kilometers">Kilometers</option>
+            <option value="miles">Miles</option>
+            <option value="feet">Feet</option>
+            <option value="centimeters">Centimeters</option>
+            <option value="millimeters">Millimeters</option>
+        </select>
+        <select id="lengthTo">
+            <option value="meters">Meters</option>
+            <option value="kilometers">Kilometers</option>
+            <option value="miles">Miles</option>
+            <option value="feet">Feet</option>
+            <option value="centimeters">Centimeters</option>
+            <option value="millimeters">Millimeters</option>
+        </select><br/>
+        <button onclick="convertLength()">Convert Length</button>
+    </div>
+     <div class="result" id="result1"></div>
+    <!-- Weight Conversion -->
+    <div>
+        <h2>Weight Conversion</h2>
+        <input type="number" id="weightValue" placeholder="Enter value" step="any">
+        <select id="weightFrom">
+            <option value="kilograms">Kilograms</option>
+            <option value="grams">Grams</option>
+            <option value="pounds">Pounds</option>
+            <option value="ounces">Ounces</option>
+        </select>
+        <select id="weightTo">
+            <option value="kilograms">Kilograms</option>
+            <option value="grams">Grams</option>
+            <option value="pounds">Pounds</option>
+            <option value="ounces">Ounces</option>
+        </select><br/>
+        <button onclick="convertWeight()">Convert Weight</button>
+    </div>
+     <div class="result" id="result2"></div>
+    <!-- Volume Conversion -->
+    <div>
+        <h2>Volume Conversion</h2>
+        <input type="number" id="volumeValue" placeholder="Enter value" step="any">
+        <select id="volumeFrom">
+            <option value="liters">Liters</option>
+            <option value="milliliters">Milliliters</option>
+            <option value="gallons">Gallons</option>
+            <option value="cups">Cups</option>
+        </select>
+        <select id="volumeTo">
+            <option value="liters">Liters</option>
+            <option value="milliliters">Milliliters</option>
+            <option value="gallons">Gallons</option>
+            <option value="cups">Cups</option>
+        </select><br/>
+        <button onclick="convertVolume()">Convert Volume</button>
+    </div>
+     <div class="result" id="result3"></div>
+    <!-- Temperature Conversion -->
+    <div>
+        <h2>Temperature Conversion</h2>
+        <input type="number" id="temperatureValue" placeholder="Enter value" step="any">
+        <select id="temperatureFrom">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+        </select>
+        <select id="temperatureTo">
+            <option value="celsius">Celsius</option>
+            <option value="fahrenheit">Fahrenheit</option>
+            <option value="kelvin">Kelvin</option>
+        </select><br/>
+        <button onclick="convertTemperature()">Convert Temperature</button>
+    </div>
+    
+   <div class="result" id="result4"></div>
+
+    <script>
+        function convertLength() {
+            const value = parseFloat(document.getElementById('lengthValue').value);
+            const from = document.getElementById('lengthFrom').value;
+            const to = document.getElementById('lengthTo').value;
+            
+            if (isNaN(value)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            const conversionRates = {
+                meters: 1,
+                kilometers: 1000,
+                miles: 1609.34,
+                feet: 0.3048,
+                centimeters: 0.01,
+                millimeters: 0.001
+            };
+
+            const inMeters = value * conversionRates[from];
+            const result1 = inMeters / conversionRates[to];
+            document.getElementById('result1').innerText = `Length Result: ${result1} ${to}`;
+        }
+
+        function convertWeight() {
+            const value = parseFloat(document.getElementById('weightValue').value);
+            const from = document.getElementById('weightFrom').value;
+            const to = document.getElementById('weightTo').value;
+            
+            if (isNaN(value)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            const conversionRates = {
+                kilograms: 1,
+                grams: 0.001,
+                pounds: 0.453592,
+                ounces: 0.0283495
+            };
+
+            const inKilograms = value * conversionRates[from];
+            const result2 = inKilograms / conversionRates[to];
+            document.getElementById('result2').innerText = `Weight Result: ${result2} ${to}`;
+        }
+
+        function convertVolume() {
+            const value = parseFloat(document.getElementById('volumeValue').value);
+            const from = document.getElementById('volumeFrom').value;
+            const to = document.getElementById('volumeTo').value;
+            
+            if (isNaN(value)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            const conversionRates = {
+                liters: 1,
+                milliliters: 0.001,
+                gallons: 3.78541,
+                cups: 0.236588
+            };
+
+            const inLiters = value * conversionRates[from];
+            const result3 = inLiters / conversionRates[to];
+            document.getElementById('result3').innerText = `Volume Result: ${result3} ${to}`;
+        }
+
+        function convertTemperature() {
+            const value = parseFloat(document.getElementById('temperatureValue').value);
+            const from = document.getElementById('temperatureFrom').value;
+            const to = document.getElementById('temperatureTo').value;
+            
+            if (isNaN(value)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            let result4;
+
+            if (from === to) {
+                result4 = value;
+            } else if (from === 'celsius') {
+                if (to === 'fahrenheit') {
+                    result4 = (value * 9/5) + 32;
+                } else if (to === 'kelvin') {
+                    result4 = value + 273.15;
+                }
+            } else if (from === 'fahrenheit') {
+                if (to === 'celsius') {
+                    result4 = (value - 32) * 5/9;
+                } else if (to === 'kelvin') {
+                    result4 = (value - 32) * 5/9 + 273.15;
+                }
+            } else if (from === 'kelvin') {
+                if (to === 'celsius') {
+                    result4 = value - 273.15;
+                } else if (to === 'fahrenheit') {
+                    result4 = (value - 273.15) * 9/5 + 32;
+                }
+            }
+
+            document.getElementById('result4').innerText = `Temperature Result: ${result4} ${to}`;
+        }
+    </script>
+<footer>
+<i>HELP:You can easily convert units of length, weight, volume or temperature by filling the input box with the number and selecting units from drop-down menu (provided in selection box) and then click on "Convert Length, Weight, Volume or Temperaure" button respectively to get the result below .</i>
+</footer>
+</body>
+</html>

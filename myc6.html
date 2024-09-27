@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <script>
+document.addEventListener('contextmenu', function(event) 
+{
+           
+ event.preventDefault();
+       
+ });
+   
+</script>
+    <title>Cube Root</title>
+    <style>
+        body{
+            background-image:url("bkg.jpg");
+        }
+       h1{
+            padding: 8px;
+            margin-top: 10px;
+            margin: 17px;
+            font-size:40px;
+        }
+        input,button{
+            padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            justify-self: center;
+            width: calc(50%-20px); /* Full width minus padding and border */
+            font-family:serif;
+            font-size:20px;
+        }
+       .result{
+               padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:30px;
+       }
+       b{
+            padding:15px;
+            margin-top: 30px;
+            margin: 20px;
+            font-family:serif;
+            font-size:60px;
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+<b>∛</b>
+        <h1>CALCULATE CUBE ROOT:</h1>
+   <div>
+        <input type="number" id="numberInput" placeholder="Enter a number" step="any"><br/>
+        <button onclick="calculateCubeRoot()">Calculate Cube Root</button>
+    </div>
+   <div class="result" id="result"></div>
+
+    <script>
+        function calculateCubeRoot() {
+            // Get the input value
+            const number = parseFloat(document.getElementById('numberInput').value);
+
+            // Check if the input is a valid number
+            if (isNaN(number)) {
+                alert("Please enter a valid number.");
+                return;
+            }
+
+            // Calculate the cube root
+            const cubeRoot = Math.cbrt(number);
+
+            // Display the result
+            document.getElementById('result').innerText = `Cube Root Result: ${cubeRoot}`;
+        }
+    </script>
+<footer>
+<i>HELP:You can easily calculate cube root of the number by filling the input box with that number and click on "Calculate Cube Root" button to get the result below .</i>
+</footer>
+</body>
+</html>

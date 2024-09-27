@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script>
+document.addEventListener('contextmenu', function(event) 
+{
+           
+ event.preventDefault();
+       
+ });
+   
+</script>
+    <title>Statistics</title>
+    <style>
+        body{
+            background-image:url("bkg.jpg");
+        }
+       h1{
+            padding: 15px;
+            margin-top: 20px;
+            margin: 20px;
+            font-size:40px;
+        }
+        textarea,button{
+            padding: 10px;
+            margin-top: 20px;
+            margin-left: 3%;
+            color: black;
+            background-color: white;
+            border: 2px solid black;
+            cursor: pointer;
+            justify-self: center;
+            width: calc(50%-20px); /* Full width minus padding and border */
+            font-family:serif;
+            font-size:20px;
+        }
+       .result{
+               padding: 10px;
+            margin-top: 10px;
+            margin: 20px;
+            font-family:serif;
+            font-size:30px;
+       }
+       b{
+            margin-top: 15px;
+            margin-left: 2.5%;
+            font-family:serif;
+            font-size:50px;
+        }
+    </style>
+</head>
+<body>
+ <div class="container">
+<b>Mu, Med, Mo</b>
+        <h1>STATISTICS CALCULATOR:</h1>      <br/>  
+  <textarea id="inputNumbers" placeholder="Enter numbers separated by commas"></textarea>
+ <br/>    <br/>  <br/>     
+<button onclick="calculateStats()">Calculate</button>
+        
+ </div>
+   <div class="result" id="result"></div>
+
+    <script>
+  function calculateStats() {
+    const input = document.getElementById('inputNumbers').value;
+    const numbers = input.split(',').map(num => parseFloat(num.trim())).filter(num => !isNaN(num));
+
+    if (numbers.length === 0) {
+        document.getElementById('result').innerHTML = 'Please enter valid numbers.';
+        return;
+    }
+
+    const mean = calculateMean(numbers);
+    const median = calculateMedian(numbers);
+    const mode = calculateMode(numbers);
+
+    document.getElementById('result').innerHTML = `
+        <strong>Results:</strong><br>
+        Mean: ${mean}<br>
+        Median: ${median}<br>
+        Mode: ${mode}
+    `;
+}
+
+function calculateMean(numbers) {
+    const total = numbers.reduce((acc, num) => acc + num, 0);
+    return (total / numbers.length).toFixed(2);
+}
+
+function calculateMedian(numbers) {
+    const sorted = [...numbers].sort((a, b) => a - b);
+    const mid = Math.floor(sorted.length / 2);
+    return sorted.length % 2 === 0 
+        ? ((sorted[mid - 1] + sorted[mid]) / 2).toFixed(2) 
+        : sorted[mid].toFixed(2);
+}
+
+function calculateMode(numbers) {
+    const frequency = {};
+    let maxFreq = 0;
+    let modes = [];
+
+    numbers.forEach(num => {
+        frequency[num] = (frequency[num] || 0) + 1;
+        if (frequency[num] > maxFreq) {
+            maxFreq = frequency[num];
+        }
+    });
+
+    for (const num in frequency) {
+        if (frequency[num] === maxFreq) {
+            modes.push(num);
+        }
+    }
+
+    return modes.length > 1 ? 'No unique mode' : modes[0];
+}
+ </script>
+<footer>
+<i>HELP:You can enter numbers separated by commas, click the "Calculate" button, and see the mean, median, and mode results below .</i>
+</footer>
+</body>
+</html>
